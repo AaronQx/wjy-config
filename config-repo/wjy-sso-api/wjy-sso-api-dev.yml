@@ -1,0 +1,46 @@
+
+
+###################  项目 配置  ###################
+wjy:
+  swagger-open: true              #是否开启swagger (true/false)
+  kaptcha-open: false             #是否开启登录时验证码 (true/false)
+#  file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
+  muti-datasource-open: false #是否开启多数据源(true/false)
+  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+####################  spring配置  ###################
+
+mybatis-plus:
+  typeAliasesPackage: com.wjy.sso.modular.system.entity
+
+log:
+  path: /data/logs/sso/sso-api
+
+
+spring:
+  profiles: dev
+  rabbitmq:
+      host: 172.16.3.52
+      port: 5672
+      username: admin
+      password: admin123
+      publisher-confirms: true  #支持路由确认
+      publisher-returns: true   #支持发布返回
+  datasource:
+    url: jdbc:mysql://172.16.3.52:3306/wjy_sso?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: rMM%wc4M
+    db-name: wjy_sso #用来搜集数据库的所有表
+    filters: wall,mergeStat
+sso-server:
+  app-id: 1001
+  api-host: http://172.16.3.52:8888 # api 接口地址
+  plat-host: https://dev4ehos.doctoryan.cn:28040/plat # 平台应用地址
+  sign-key: A82E19010F2EF292137EB0D84A500FDC
+
+
+
+
+
